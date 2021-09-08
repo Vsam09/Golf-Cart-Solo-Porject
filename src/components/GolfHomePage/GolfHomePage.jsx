@@ -1,6 +1,7 @@
-import {Grid} from '@material-ui/core';
+import {Grid, Card, CardHeader, CardMedia} from '@material-ui/core';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import GolfClubItems from '../GolfClubItems/GolfClubItems';
 
 function GolfHomePage() {
 
@@ -14,15 +15,18 @@ function GolfHomePage() {
     return(
         <>
         <Grid variant="contained">
-        <h2>The Place to Buy and Sell Your Golf Clubs</h2>
+            <h2>The Place to Buy and Sell Your Golf Clubs</h2>
         </Grid>
+        <Grid item xs={false} sm={8}>
+        <Card>
         <h3>Recent Listing</h3>
         {golfClubs.map(clubs => (
-            <p>{clubs.clubtype}
-                <img src={clubs.image_path} />
-            </p>
-            // <img src={clubs.img_path} />
+            <GolfClubItems clubs = {clubs}/>
         ))}
+        </Card>
+        <Grid item xs={false} sm={8}>
+        </Grid>
+        </Grid>
         </>
 
     )

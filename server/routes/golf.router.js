@@ -15,4 +15,28 @@ router.get('/', (req, res) => {
       })
   
   });
+
+  router.get('/details/:id', (req, res) => {
+    const clubId = req.params.id;
+    console.log('params', req.params.id)
+    const query = `SELECT 
+    "golf club"."clubtype" as "clubtype", 
+    "golf club"."description" as "description", 
+    "golf club"."price" as "price", 
+    "golf club"."image_path" as "image"
+    FROM "golf type"
+    JOIN "golf club"
+      ON "golf club"."clubtype" = "golf type"."club_type"
+    WHERE "golf type"."id" = $1
+    GROUP BY "clubtype", "image", "description", "price";`;
+  
+      pool.query(query, [clubId])
+      .then(result => {
+        console.log('result', result)
+        res.send(result.rows)
+      }).catch(error => {
+        console.log('Details GET error', error)
+        res.sendStatus(500)
+      });
+  })
   module.exports = router;
