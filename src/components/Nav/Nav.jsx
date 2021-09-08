@@ -9,6 +9,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
 
 const useStyles = makeStyles((theme) => ({
   
@@ -66,12 +68,20 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
+      <Link to="/HomePage">
         <h2 className="nav-title">
           <img width="100" src="images/Golf.jpg"/>Golf Cart</h2>
       </Link>
-          <Button variant="contained" color="primary">Menu</Button>
-          <Button variant="contained" color="primary" onClick={handleMyAccount}>My Account</Button>
+          <Button 
+            variant="contained" 
+            color="primary"
+            endIcon={<ExpandMoreOutlinedIcon/>}> Golf Clubs
+          </Button>
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={handleMyAccount}>My Account
+          </Button>
           <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
@@ -103,7 +113,7 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/user">
+            <Link className="navLink" to="/HomePage">
               Home
             </Link>
 
@@ -112,11 +122,12 @@ function Nav() {
             </Link>
 
             <LogOutButton className="navLink" />
+
+            <Link className="navLink" to="/about">
+              <ShoppingCartIcon />
+            </Link>
           </>
         )}
-        <Link className="navLink" to="/about">
-          Cart
-        </Link>
       </div>
     </div>
     </div>
