@@ -22,7 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import HomePage from '../GolfHomePage/GolfHomePage';
-
+import GolfDetails from '../GolfDetails/GolfDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +48,14 @@ function App() {
             path="/about"
           >
             <AboutPage />
+          </Route>
+
+          <Route
+            // shows GolfClubDetailsPage at all times (logged in or not)
+            exact
+            path="/details/:id"
+          >
+            <GolfDetails />
           </Route>
 
           <Route

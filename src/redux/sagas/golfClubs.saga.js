@@ -9,9 +9,9 @@ function* fetchClubs() {
   catch(error) {
       console.log('getItems at shelfItem has error', error)
   }
-}
+};
 function* golfSaga() {
     yield takeLatest('FETCH_CLUBS', fetchClubs);
-  }
+}
   
   export default golfSaga;
