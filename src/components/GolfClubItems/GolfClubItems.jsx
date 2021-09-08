@@ -7,14 +7,14 @@ function GolfClubItems({clubs}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const posterClick = () => {
-        console.log(clubs.id)
-
+    const imageOnClick = () => {
+        console.log('Wheres my stuff',clubs.id)
+        const id = clubs.id;
         dispatch({
             type: 'GET_DETAILS',
             payload: clubs.id
         })
-        history.push('/details')
+        history.push(`/details/${id}`)
     }
 
     return(
@@ -22,7 +22,7 @@ function GolfClubItems({clubs}) {
         <Grid item xs={false} sm={8}>
         <h3>{clubs.clubtype}</h3>
         <Card>
-        <img onClick={posterClick} src={clubs.image_path} alt={clubs.clubtype}/>
+        <img onClick={imageOnClick} src={clubs.image_path} alt={clubs.clubtype}/>
         </Card>
         <Grid item xs={false} sm={8}>
 

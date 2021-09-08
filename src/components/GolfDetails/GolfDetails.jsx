@@ -1,16 +1,15 @@
 import {useSelector} from 'react-redux';
 import GolfClubDetails from '../GolfClubDetails/GolfClubDetails';
-function GolfDetails(clubs) {
+function GolfDetails() {
 
     const details = useSelector(store => store.golfDetails);
+    console.log('store details', details);
 
     return(
         <div>
-        {details.map((golfClubDetails) => (
-            <div key={golfClubDetails.id}>
-                <GolfClubDetails golfClubDetails = {golfClubDetails} />
-            </div>
-        ))}
+            {details.map(details => (
+            <GolfClubDetails key={details.id} details = {details} />    
+            ))}
         </div>
     )
 }

@@ -21,7 +21,7 @@ function GolfHomePage() {
         <Card>
         <h3>Recent Listing</h3>
         {golfClubs.map(clubs => (
-            <GolfClubItems clubs = {clubs}/>
+            <GolfClubItems key={clubs.id} clubs = {clubs}/>
         ))}
         </Card>
         <Grid item xs={false} sm={8}>

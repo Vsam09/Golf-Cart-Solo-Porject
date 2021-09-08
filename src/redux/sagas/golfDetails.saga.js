@@ -2,9 +2,10 @@ import axios from "axios";
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* getClubDetails(action) {
-    
+    console.log('getClubDetails', action.payload)
     try{
       const golfClubDetails = yield axios.get (`/api/golfclub/details/${action.payload}`)
+      console.log('what am i', golfClubDetails.data)
       yield put({ type: 'SET_DETAILS', payload: golfClubDetails.data});
     }
     catch(error) {
