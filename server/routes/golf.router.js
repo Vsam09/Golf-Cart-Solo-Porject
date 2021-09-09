@@ -38,5 +38,7 @@ router.get('/', (req, res) => {
         console.log('Details GET error', error)
         res.sendStatus(500)
       });
-  })
+  });
+
+  
   module.exports = router;

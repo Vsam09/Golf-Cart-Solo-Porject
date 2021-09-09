@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 function GolfClubDetails({details}) {
     console.log('Club details', details)
     const history = useHistory();
+    
     const addToCart = () => {
         history.push('/shoppingcart')
     }
