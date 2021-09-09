@@ -40,5 +40,16 @@ router.get('/', (req, res) => {
       });
   });
 
-  
+  router.post('/', (req, res) => {
+    console.log('post', req.body);
+    let query = `INSERT INTO "shopping cart" ("item_id", "user_id")
+                 VALUES ($1, $2)`;
+    pool.query(query, [req.body.item_id, req.body.user_id]).then( result => {
+      res.sendStatus(200);
+    }).catch(err => {
+      console.log('POST has Error',err);
+      res.sendStatus(500);
+    })
+  })
+
   module.exports = router;

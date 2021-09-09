@@ -1,10 +1,15 @@
 import { useHistory } from "react-router-dom";
-
+import { useDispatch } from 'react-redux';
 function GolfClubDetails({details}) {
     console.log('Club details', details)
     const history = useHistory();
-    
+    const dispatch = useDispatch();
+
     const addToCart = () => {
+        dispatch({
+            type: 'ADD_TO_CART',
+            payload: details.id
+        })
         history.push('/shoppingcart')
     }
 
