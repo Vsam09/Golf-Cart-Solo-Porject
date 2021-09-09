@@ -8,7 +8,6 @@ function GolfClubItems({clubs}) {
     const history = useHistory();
 
     const imageOnClick = () => {
-        console.log('Wheres my stuff',clubs.id)
         const id = clubs.id;
         dispatch({
             type: 'GET_DETAILS',

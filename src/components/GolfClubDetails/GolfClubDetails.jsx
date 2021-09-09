@@ -1,14 +1,18 @@
+import { useHistory } from "react-router-dom";
 
 function GolfClubDetails({details}) {
     console.log('Club details', details)
-    
+    const history = useHistory();
+    const addToCart = () => {
+        history.push('/shoppingcart')
+    }
+
     return(
         <div>
-            <h1>WHERE AM I</h1>
         <h1>{details.clubtype}</h1>
         <img src={details.image} />
-        <p>Description: {details.description}</p>
-        <p>Price: {details.price}</p>
+        <p>{details.description}</p>
+        <p>Price: ${details.price} <button onClick={addToCart}>Add To Cart</button></p>
         </div>
     )
 }
