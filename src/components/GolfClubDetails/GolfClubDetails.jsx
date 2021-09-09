@@ -9,7 +9,7 @@ function GolfClubDetails({details}) {
 
     return(
         <div>
-        <h1>{details.clubtype}</h1>
+        <h1>{details.brand}</h1>
         <img src={details.image} />
         <p>{details.description}</p>
         <p>Price: ${details.price} <button onClick={addToCart}>Add To Cart</button></p>

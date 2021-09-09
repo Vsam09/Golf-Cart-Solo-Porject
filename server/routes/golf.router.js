@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
     const clubId = [req.params.id];
     const query = `SELECT 
     "golf club"."clubtype" as "clubtype", 
+    "golf club"."brand" as "brand",
     "golf club"."description" as "description", 
     "golf club"."price" as "price", 
     "golf club"."image_path" as "image"
@@ -27,7 +28,7 @@ router.get('/', (req, res) => {
     JOIN "golf club"
       ON "golf club"."id" = "golf type"."id"
     WHERE "golf type"."id" = $1
-    GROUP BY "clubtype", "image", "description", "price";`;
+    GROUP BY "clubtype", "brand", "image", "description", "price";`;
   
       pool.query(query, clubId)
       .then(result => {
