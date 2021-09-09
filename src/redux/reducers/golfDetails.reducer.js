@@ -1,4 +1,4 @@
-const golfDetailsReducer = (state = {}, action) => {
+const golfDetailsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_DETAILS':
             return action.payload
