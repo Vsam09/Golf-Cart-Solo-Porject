@@ -1,7 +1,8 @@
-function ShoppingCart(details) {
+function ShoppingCart({details}) {
     return(
         <>
-        {details.image} {details.price}
+        <button>Remove</button>
+        <button>Proceed to Checkout</button>
         </>       
     )
 }
