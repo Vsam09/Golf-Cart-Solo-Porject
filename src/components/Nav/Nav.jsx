@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+
+//Imported Material UI
 import { Button } from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase';
 import AppBar from '@material-ui/core/AppBar';
@@ -11,6 +13,8 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   
@@ -59,6 +63,15 @@ function Nav() {
   const user = useSelector((store) => store.user);
   const classes = useStyles();
   const history = useHistory();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleMyAccount = () => {
     history.push('/user')
@@ -75,8 +88,25 @@ function Nav() {
           <Button 
             variant="contained" 
             color="primary"
-            endIcon={<ExpandMoreOutlinedIcon/>}> Golf Clubs
+            endIcon={<ExpandMoreOutlinedIcon/>}
+            aria-controls="simple-menu" 
+            aria-haspopup="true" 
+            onClick={handleClick}> Clubs
           </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Drivers</MenuItem>
+              <MenuItem onClick={handleClose}>Woods</MenuItem>
+              <MenuItem onClick={handleClose}>Hybrids</MenuItem>
+              <MenuItem onClick={handleClose}>Wedges</MenuItem>
+              <MenuItem onClick={handleClose}>Irons</MenuItem>
+              <MenuItem onClick={handleClose}>Putters</MenuItem>
+            </Menu>
           <Button 
             variant="contained" 
             color="primary" 

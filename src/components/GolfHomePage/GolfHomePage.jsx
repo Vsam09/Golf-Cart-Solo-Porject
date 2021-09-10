@@ -2,8 +2,16 @@ import {Grid, Card, CardHeader, CardMedia} from '@material-ui/core';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import GolfClubItems from '../GolfClubItems/GolfClubItems';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    root: {
+      maxWidth: 980,
+    },
+  });
 
 function GolfHomePage() {
+    const classes = useStyles();
 
     const dispatch = useDispatch();
     const golfClubs = useSelector(store => store.golf)
@@ -14,17 +22,21 @@ function GolfHomePage() {
 
     return(
         <>
-        <Grid variant="contained">
-            <h2>The Place to Buy and Sell Your Golf Clubs</h2>
-        </Grid>
-        <Grid item xs={false} sm={8}>
-        <Card>
-        <h3>Recent Listing</h3>
-        {golfClubs.map(clubs => (
-            <GolfClubItems key={clubs.id} clubs = {clubs}/>
-        ))}
-        </Card>
-        <Grid item xs={false} sm={8}>
+            <Card className={classes.root}>
+                <h2>
+                <CardMedia 
+                    height="350"
+                    component="img" 
+                    image="images/Background Golf.jpeg"/></h2>
+            </Card>
+        <Grid item xs={false} sm={6}>
+            <Card>
+                <h3>Recent Listing</h3>
+                {golfClubs.map(clubs => (
+                    <GolfClubItems key={clubs.id} clubs = {clubs}/>
+                ))}
+            </Card>
+            <Grid item xs={false} sm={8}>
         </Grid>
         </Grid>
         </>
