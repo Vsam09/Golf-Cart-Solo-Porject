@@ -1,15 +1,13 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from "react-router-dom"
-
+import { Button } from "@material-ui/core";
 function ShoppingCart() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    let [user, golfDetails, golf] = useSelector(state => {
-        return [state.user, state.golfDetails, state.golf]
+    let [user, golfDetails, total] = useSelector(state => {
+        return [state.user, state.shoppingCart, state.total]
     }); 
-
-    
     
     return (
         <>
@@ -23,18 +21,28 @@ function ShoppingCart() {
                 </tr>
             </thead>
             <tbody>
-                {/* map function to create rows */}
-                {golf.map(golf => 
+                {golfDetails.map(golf => 
                     <tr>
-                        <td><img width="50px" src={golf.image_path} /> {golf.brand}</td>
+                        <td><img width="50px" src={golfDetails.image} /> {golf.brand}</td>
                         <td>{golf.price}</td>
                     </tr>)}
             </tbody>
         </table>
         {/* display total */}
-        <p>total goes here(ToDo)</p>
+        <p>Total: ${total}</p>
         {/* checkout button */}
-        <button className="btn btn-primary" >Proceed to Checkout</button>
+        <Button 
+        variant="contained"
+        color="primary" 
+        >Continue Shopping
+        </Button>
+        <div>
+        <Button 
+        variant="contained"
+        color="primary" 
+        >Place Order
+        </Button>
+        </div>
         </>
     );
 };

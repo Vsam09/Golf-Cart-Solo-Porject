@@ -4,7 +4,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* addToCart(action) {
     
   try{
-    const items = yield axios.post ('/api/golfclub', action.payload)
+    
+    yield axios.post ('/api/golfclub', action.payload)
     yield put({ type: 'FETCH_CLUBS' });
   }
   catch(error) {
