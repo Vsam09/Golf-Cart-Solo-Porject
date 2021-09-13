@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+//GET CLUBS
 router.get('/', (req, res) => {
 
     const query = `SELECT * FROM "golf club" ORDER BY "clubtype" ASC`;
@@ -16,6 +17,7 @@ router.get('/', (req, res) => {
   
   });
 
+  //GET CLUB DETAILS
   router.get('/details/:id', (req, res) => {
     const clubId = [req.params.id];
     const query = `SELECT 
@@ -40,6 +42,7 @@ router.get('/', (req, res) => {
       });
   });
 
+  //POST CLUB
   router.post('/', (req, res) => {
     console.log('post', req.body);
     let query = `INSERT INTO "shopping cart" ("item_id", "user_id")
@@ -50,7 +53,26 @@ router.get('/', (req, res) => {
       console.log('POST has Error',err);
       res.sendStatus(500);
     })
-  })
+  });
+
+  //DELETE
+  router.delete('/details/:id', (req, res) => {
+    console.log('delete me', req.params.id);
+    let id = req.params.id;
+    let query = `
+      DELETE FROM "golf club"
+      WHERE "id" = $1
+    `;
+  
+    pool.query(query, [id])
+      .then(result => {
+        res.sendStatus(200);
+      })
+      .catch(error => {
+        console.log('DELETE route error', error)
+        res.sendStatus(500);
+      })
+  });
 
   
 

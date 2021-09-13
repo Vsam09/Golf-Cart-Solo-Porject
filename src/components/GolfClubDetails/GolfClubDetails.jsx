@@ -7,6 +7,7 @@ function GolfClubDetails({details}) {
 
     const addToCart = () => {
         let type = 'ADD_TO_CART' && 'ADD_ITEM';
+
         dispatch({
             type: type,
             payload: details

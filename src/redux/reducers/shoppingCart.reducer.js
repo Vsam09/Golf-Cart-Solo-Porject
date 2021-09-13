@@ -3,7 +3,7 @@ const shoppingCart = (state = [], action) => {
         case ('ADD_ITEM'):
             return [...state, action.payload];
         case ('CLEAR'):
-            return []
+            return [];
     }
     return state;
 };
