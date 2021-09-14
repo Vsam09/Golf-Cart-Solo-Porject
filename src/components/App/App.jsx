@@ -40,7 +40,7 @@ function App() {
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+          <Redirect exact from="/" to="/HomePage" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
@@ -132,7 +132,7 @@ function App() {
               <Redirect to="/user" />
               :
               // Otherwise, show the Landing page
-              <LandingPage />
+              <HomePage />
             }
           </Route>
 

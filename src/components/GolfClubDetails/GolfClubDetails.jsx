@@ -6,8 +6,10 @@ function GolfClubDetails({details}) {
     const dispatch = useDispatch();
 
     const addToCart = () => {
+        let type = 'ADD_TO_CART' && 'ADD_ITEM';
+
         dispatch({
-            type: 'ADD_TO_CART',
+            type: type,
             payload: details
         })
         history.push('/shoppingcart')

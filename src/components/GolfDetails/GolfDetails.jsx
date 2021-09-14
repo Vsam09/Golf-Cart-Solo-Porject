@@ -7,9 +7,8 @@ function GolfDetails() {
 
     return(
         <div>
-            {details.map(details => (
-            <div><GolfClubDetails key={details.id} details = {details} />
-            </div>
+            {details.map((details, i) => (
+                <GolfClubDetails key={i} details = {details} />
             ))}    
         </div>
     )

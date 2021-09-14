@@ -3,6 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import Driver from '../Driver/Driver';
+
+//Imported Material UI
 import { Button } from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,7 +13,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
+
 
 const useStyles = makeStyles((theme) => ({
   
@@ -59,6 +62,7 @@ function Nav() {
   const user = useSelector((store) => store.user);
   const classes = useStyles();
   const history = useHistory();
+ 
 
   const handleMyAccount = () => {
     history.push('/user')
@@ -72,11 +76,7 @@ function Nav() {
         <h2 className="nav-title">
           <img width="100" src="images/Golf.jpg"/>Golf Cart</h2>
       </Link>
-          <Button 
-            variant="contained" 
-            color="primary"
-            endIcon={<ExpandMoreOutlinedIcon/>}> Golf Clubs
-          </Button>
+      <Driver />     
           <Button 
             variant="contained" 
             color="primary" 
