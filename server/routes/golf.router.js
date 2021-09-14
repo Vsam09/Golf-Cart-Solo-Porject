@@ -17,8 +17,33 @@ router.get('/', (req, res) => {
   
   });
 
-  //GET CLUB DETAILS
+  //GET ALL CLUB DETAILS
   router.get('/details/:id', (req, res) => {
+    const clubId = [req.params.id];
+    const query = `SELECT 
+    "golf club"."id" as "clubid",
+    "golf club"."clubtype" as "clubtype", 
+    "golf club"."brand" as "brand",
+    "golf club"."description" as "description", 
+    "golf club"."price" as "price", 
+    "golf club"."image_path" as "image"
+    FROM "golf type"
+    JOIN "golf club"
+      ON "golf club"."id" = "golf type"."id"
+    WHERE "golf type"."id" = $1
+    GROUP BY "clubtype", "brand", "image", "description", "price", "clubid";`;
+  
+      pool.query(query, clubId)
+      .then(result => {
+        console.log('result', result)
+        res.send(result.rows)
+      }).catch(error => {
+        console.log('Details GET error', error)
+        res.sendStatus(500)
+      });
+  });
+
+  router.get('/clubtype/:id', (req, res) => {
     const clubId = [req.params.id];
     const query = `SELECT 
     "golf club"."clubtype" as "clubtype", 
@@ -29,7 +54,7 @@ router.get('/', (req, res) => {
     FROM "golf type"
     JOIN "golf club"
       ON "golf club"."id" = "golf type"."id"
-    WHERE "golf type"."id" = $1
+    WHERE "golf type"."clubtype" = $1
     GROUP BY "clubtype", "brand", "image", "description", "price";`;
   
       pool.query(query, clubId)
@@ -60,7 +85,7 @@ router.get('/', (req, res) => {
     console.log('delete me', req.params.id);
     let id = req.params.id;
     let query = `
-      DELETE FROM "golf club"
+      DELETE FROM "shopping cart"
       WHERE "id" = $1
     `;
   

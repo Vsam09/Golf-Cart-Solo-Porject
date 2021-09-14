@@ -12,11 +12,16 @@ function ShoppingCart() {
         return [state.user, state.shoppingCart, state.total]
     }); 
 
-    const handleDelete = (id) => {
-        console.log('shoppping cart', handleDelete)
+    // dispatch({
+    //     type: 'GET_DETAILS',
+    //     payload: details
+    // })
+    const handleDelete = (clubid) => {
+        console.log('shoppping cart', clubid)
+
         dispatch({
           type: 'DELETE_ITEM',
-          payload: id
+          payload: clubid
         });
       }
 
@@ -35,7 +40,7 @@ function ShoppingCart() {
                 {golfDetails.map((golf, i) => (
                     <tr key={i}>
                         <td> <img width="50px" src={golf.image} /> {golf.brand}</td>
-                        <td> {golf.price} <Button onClick={() => handleDelete(golf.id)}> <DeleteForeverOutlinedIcon /> </Button></td>
+                        <td> {golf.price} <Button onClick={() => handleDelete(golf.clubid)}> <DeleteForeverOutlinedIcon /> </Button></td>
                     </tr>))}
             </tbody>
         </table>
