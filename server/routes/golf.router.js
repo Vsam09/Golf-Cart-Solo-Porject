@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
       })
   
   });
-  //Shopping cart
+  //GET shopping cart re-render inside shopping cart
   router.get('/shoppingcart', (req, res) => {
 
  const query = `SELECT 
@@ -94,21 +94,59 @@ router.get('/', (req, res) => {
         res.sendStatus(500)
       });
   });
+//POST CLUB to shopping cart
+router.post('/', (req, res) => {
+  console.log('post', req.body);
+  let query = `INSERT INTO "shopping cart" ("item_id", "user_id")
+               VALUES ($1, $2)`;
+  pool.query(query, [req.body.clubid, req.user.id]).then( result => {
+    res.sendStatus(200);
+  }).catch(err => {
+    console.log('POST has Error',err);
+    res.sendStatus(500);
+  })
+});
 
-  //POST CLUB
-  router.post('/', (req, res) => {
-    console.log('post', req.body);
-    let query = `INSERT INTO "shopping cart" ("item_id", "user_id")
-                 VALUES ($1, $2)`;
-    pool.query(query, [req.body.clubid, req.user.id]).then( result => {
-      res.sendStatus(200);
-    }).catch(err => {
-      console.log('POST has Error',err);
-      res.sendStatus(500);
-    })
-  });
+//POST NEW CLUB to homepage
+router.post('/', (req, res) => {
+  console.log(req.body);
+  // RETURNING "id" will give us back the id of the created movie
+  const query = `
+  INSERT INTO "golf club" ("clubtype", "brand", "image_path", "description", "price")
+  VALUES ($1, $2, $3, $4, $5)
+  RETURNING "id";`
 
-  //DELETE
+  // FIRST QUERY MAKES NEW CLUB
+  pool.query(query, [req.body.brand, req.body.image_path, req.body.description, req.body.price])
+  .then(result => {
+    console.log('New Club Id:', result.rows[0].id); //ID IS HERE!
+    
+    // const createdMovieId = result.rows[0].id
+
+    // // Now handle the genre reference
+    // const insertMovieGenreQuery = `
+    //   INSERT INTO "movies_genres" ("movie_id", "genre_id")
+    //   VALUES  ($1, $2);
+    //   `
+    //   // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
+    //   pool.query(insertMovieGenreQuery, [createdMovieId, req.body.genre_id]).then(result => {
+    //     //Now that both are done, send back success!
+        res.sendStatus(201);
+      }).catch(err => {
+        // catch for second query
+        console.log('POST addNewClub Error',err);
+        res.sendStatus(500)
+      })
+
+// Catch for first query
+//   }).catch(err => {
+//     console.log(err);
+//     res.sendStatus(500)
+//   })
+});
+
+  
+  //DELETE from shopping cart
   router.delete('/details/:id', (req, res) => {
     console.log('delete me', req.params.id);
     let id = req.params.id;
