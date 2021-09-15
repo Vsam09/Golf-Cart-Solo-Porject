@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import GolfClubItems from '../GolfClubItems/GolfClubItems';
 import { makeStyles } from '@material-ui/core/styles';
 import './GolfHomePage.css';
+
 const useStyles = makeStyles({
     root: {
       maxWidth: 200,
@@ -26,10 +27,9 @@ function GolfHomePage() {
                 <CardMedia 
                     height="350"
                     component="img" 
-                    image="images/Background Golf.jpeg"/>
+                    image='images/Background-Golf.jpeg'/>
             </h2>
        
-
         <Grid className="myClubs" container spacing={1} justify="center">
             <Card>
                 <h3>Recent Listing</h3>
