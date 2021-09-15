@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
   "golf club"."image_path" as "image"
   FROM "golf type"
   JOIN "golf club"
-      ON "golf club"."id" = "golf type"."id"
+      ON "golf club"."clubtype" = "golf type"."club_type"
   JOIN "shopping cart"
   ON "shopping cart"."item_id" = "golf club"."id"
   WHERE "shopping cart"."user_id" = $1
@@ -57,8 +57,8 @@ router.get('/', (req, res) => {
     "golf club"."image_path" as "image"
     FROM "golf type"
     JOIN "golf club"
-      ON "golf club"."id" = "golf type"."id"
-    WHERE "golf type"."id" = $1
+      ON "golf club"."clubtype" = "golf type"."club_type"
+    WHERE "golf club"."id" = $1
     GROUP BY "clubtype", "brand", "image", "description", "price", "clubid";`;
   
       pool.query(query, clubId)
@@ -81,7 +81,7 @@ router.get('/', (req, res) => {
     "golf club"."image_path" as "image"
     FROM "golf type"
     JOIN "golf club"
-      ON "golf club"."id" = "golf type"."id"
+      ON "golf club"."clubtype" = "golf type"."club_type"
     WHERE "golf type"."clubtype" = $1
     GROUP BY "clubtype", "brand", "image", "description", "price";`;
   
