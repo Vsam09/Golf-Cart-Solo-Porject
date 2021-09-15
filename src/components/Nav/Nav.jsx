@@ -74,7 +74,7 @@ function Nav() {
     <div className="nav">
       <Link to="/HomePage">
         <h2 className="nav-title">
-          <img width="100" src="images/Golf.jpg"/>Golf Cart</h2>
+          <img width="130" src="images/Golf.jpg"/>Golf Cart</h2>
       </Link>
       <Driver />     
           <Button 

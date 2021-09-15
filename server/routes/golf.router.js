@@ -82,7 +82,7 @@ router.get('/', (req, res) => {
     FROM "golf type"
     JOIN "golf club"
       ON "golf club"."id" = "golf type"."id"
-    WHERE "golf type"."clubtype" = $1
+    WHERE "golf type"."club_type" = $1
     GROUP BY "clubtype", "brand", "image", "description", "price";`;
   
       pool.query(query, clubId)

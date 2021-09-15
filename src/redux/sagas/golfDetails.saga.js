@@ -1,5 +1,5 @@
 import axios from "axios";
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
 function* getClubDetails(action) {
     try{
@@ -13,7 +13,7 @@ function* getClubDetails(action) {
   };
   
   function* golfDetailsSaga() {
-      yield takeLatest('GET_DETAILS', getClubDetails);
+      yield takeEvery('GET_DETAILS', getClubDetails);
     }
     
     export default golfDetailsSaga;
