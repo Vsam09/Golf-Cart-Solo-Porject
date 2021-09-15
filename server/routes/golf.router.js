@@ -16,6 +16,34 @@ router.get('/', (req, res) => {
       })
   
   });
+  //Shopping cart
+  router.get('/shoppingcart', (req, res) => {
+
+ const query = `SELECT 
+  "shopping cart"."id" as "cartid",
+  "golf club"."id" as "clubid",
+  "golf club"."clubtype" as "clubtype", 
+  "golf club"."brand" as "brand",
+  "golf club"."description" as "description", 
+  "golf club"."price" as "price", 
+  "golf club"."image_path" as "image"
+  FROM "golf type"
+  JOIN "golf club"
+      ON "golf club"."clubtype" = "golf type"."club_type"
+  JOIN "shopping cart"
+  ON "shopping cart"."item_id" = "golf club"."id"
+  WHERE "shopping cart"."user_id" = $1
+  GROUP BY "clubtype", "brand", "image", "description", "price", "clubid", "cartid";`;
+
+  pool.query(query, [req.user.id])
+  .then(result => {
+    console.log('result', result)
+    res.send(result.rows)
+  }).catch(error => {
+    console.log('Details GET error', error)
+    res.sendStatus(500)
+  });
+});
 
   //GET ALL CLUB DETAILS
   router.get('/details/:id', (req, res) => {
@@ -29,8 +57,8 @@ router.get('/', (req, res) => {
     "golf club"."image_path" as "image"
     FROM "golf type"
     JOIN "golf club"
-      ON "golf club"."id" = "golf type"."id"
-    WHERE "golf type"."id" = $1
+      ON "golf club"."clubtype" = "golf type"."club_type"
+    WHERE "golf club"."id" = $1
     GROUP BY "clubtype", "brand", "image", "description", "price", "clubid";`;
   
       pool.query(query, clubId)
@@ -43,17 +71,17 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.get('/clubtype/:id', (req, res) => {
+  router.get('/clubtype', (req, res) => {
     const clubId = [req.params.id];
     const query = `SELECT 
-    "golf club"."clubtype" as "clubtype", 
+    "golf club"."club_type" as "clubtype", 
     "golf club"."brand" as "brand",
     "golf club"."description" as "description", 
     "golf club"."price" as "price", 
     "golf club"."image_path" as "image"
     FROM "golf type"
     JOIN "golf club"
-      ON "golf club"."id" = "golf type"."id"
+      ON "golf club"."clubtype" = "golf type"."club_type"
     WHERE "golf type"."clubtype" = $1
     GROUP BY "clubtype", "brand", "image", "description", "price";`;
   
@@ -72,7 +100,7 @@ router.get('/', (req, res) => {
     console.log('post', req.body);
     let query = `INSERT INTO "shopping cart" ("item_id", "user_id")
                  VALUES ($1, $2)`;
-    pool.query(query, [req.body.item_id, req.user.id]).then( result => {
+    pool.query(query, [req.body.clubid, req.user.id]).then( result => {
       res.sendStatus(200);
     }).catch(err => {
       console.log('POST has Error',err);
@@ -91,6 +119,7 @@ router.get('/', (req, res) => {
   
     pool.query(query, [id])
       .then(result => {
+        console.log('Delete results', result)
         res.sendStatus(200);
       })
       .catch(error => {

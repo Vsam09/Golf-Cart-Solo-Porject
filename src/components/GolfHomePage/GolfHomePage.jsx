@@ -1,4 +1,4 @@
-import {Grid, Card, CardHeader, CardMedia} from '@material-ui/core';
+import {Grid, Card, Typography, CardMedia, CardContent} from '@material-ui/core';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import GolfClubItems from '../GolfClubItems/GolfClubItems';
@@ -23,25 +23,26 @@ function GolfHomePage() {
 
     return(
         <>
-        <Grid container className={classes.root} justify="center">
             <h2>
-                <CardMedia 
-                    height="350"
-                    component="img" 
-                    image="images/Background Golf.jpeg"/>
+            <CardMedia 
+                height="350"
+                component="img" 
+                image='images/Background-Golf.jpeg'/>
             </h2>
-        </Grid>
-
-        <Grid className="myClubs" container spacing={1} justify="center">
-            <Card>
-                <h3>Recent Listing</h3>
-                {golfClubs.map(clubs => (
-                   <GolfClubItems key={clubs.id} clubs = {clubs}/>
-                ))}
-            </Card>
-            <Grid item xs={false} sm={8}>
-        </Grid>
-        </Grid>
+        <Card p={4}>
+                <Grid container spacing={3}>
+                        <CardContent>
+                            <Typography variant="h4" component="h3">Recent Listing</Typography>
+                        </CardContent>
+                        {golfClubs.map(clubs => (                     
+                            <Grid item> 
+                                <GolfClubItems key={clubs.id} clubs = {clubs}/> 
+                            </Grid>                       
+                        ))}
+                    <Grid>
+                </Grid>
+            </Grid>
+        </Card>
         </>
 
     )
