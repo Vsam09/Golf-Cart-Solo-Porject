@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* addNewClub(action) {
     try{
-        yield axios.post('/api/golfclub', action.payload)
+        yield axios.post('/api/golfclub/newGolfClub', action.payload)
         yield put ({ type: 'FETCH_CLUBS' });
     }
     catch(error) {
