@@ -45,9 +45,9 @@ function Driver() {
     const golfDetails = useSelector(store => store.golfDetails);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch({ type: 'GET_CLUB_TYPE' })
-    }, []);
+    // useEffect(() => {
+    //     dispatch({ type: 'GET_CLUB_TYPE' })
+    // }, []);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -61,7 +61,7 @@ function Driver() {
     const handleDriver = () => {
         dispatch({
             type: 'GET_CLUB_TYPE',
-            payload: golfDetails.clubtype
+            payload: golfDetails
         })
     }
     return(
@@ -73,7 +73,7 @@ function Driver() {
         color="primary"
         onClick={handleClick}
       >
-        Open Menu
+        Menu
       </Button>
 
       <StyledMenu
@@ -89,29 +89,36 @@ function Driver() {
           </ListItemIcon>
           <ListItemText primary="Driver" onClick={handleDriver} />
         </StyledMenuItem>
+
         <StyledMenuItem>
           <ListItemIcon>
             <SportsGolfIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Wood" />
         </StyledMenuItem>
+
         <StyledMenuItem>
           <ListItemIcon>
             <SportsGolfIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Hybrid" />
         </StyledMenuItem>
+
         <StyledMenuItem>
           <ListItemIcon>
             <SportsGolfIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Wedge" />
-        </StyledMenuItem> <StyledMenuItem>
+        </StyledMenuItem>
+
+         <StyledMenuItem>
           <ListItemIcon>
             <SportsGolfIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Irons" />
-        </StyledMenuItem> <StyledMenuItem>
+        </StyledMenuItem>
+
+         <StyledMenuItem>
           <ListItemIcon>
             <SportsGolfIcon fontSize="small" />
           </ListItemIcon>

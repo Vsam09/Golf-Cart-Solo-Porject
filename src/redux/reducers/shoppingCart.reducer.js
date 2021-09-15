@@ -1,10 +1,11 @@
 const shoppingCart = (state = [], action) => {
     switch(action.type) {
-        case ('ADD_ITEM'):
-            return [...state, action.payload];
-        case ('CLEAR'):
-            return [];
+        case ('SET_SHOPPING_CART'):
+            return action.payload;
+        case ('DELETE_ITEM'):
+            return state.filter((state) => state.id !== action.payload);
+           default:
+               return state;
     }
-    return state;
 };
 export default shoppingCart;

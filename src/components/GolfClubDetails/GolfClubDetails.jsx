@@ -6,12 +6,15 @@ function GolfClubDetails({details}) {
     const dispatch = useDispatch();
 
     const addToCart = () => {
-        let type = 'ADD_TO_CART' && 'ADD_ITEM';
+        dispatch({
+            type: 'ADD_TO_CART',
+            payload: details
+        });
 
         dispatch({
-            type: type,
+            type: 'SET_SHOPPING_CART',
             payload: details
-        })
+        });
         history.push('/shoppingcart')
     }
 

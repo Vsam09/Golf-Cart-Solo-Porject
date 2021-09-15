@@ -24,6 +24,7 @@ function GolfClubItems({clubs}) {
 
     const imageOnClick = () => {
         const id = clubs.id;
+        console.log('where are my clubs', clubs)
         dispatch({
             type: 'GET_DETAILS',
             payload: clubs.id
