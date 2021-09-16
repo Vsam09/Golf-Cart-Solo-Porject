@@ -42,7 +42,7 @@ function ShoppingCart() {
         history.push('/HomePage')
       }
 
-    const placeOrder = (clubid) => {
+    const placeOrder = () => {
         dispatch({
             type: 'CLEAR_CART',
             payload: []

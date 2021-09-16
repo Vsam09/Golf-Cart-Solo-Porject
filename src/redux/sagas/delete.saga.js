@@ -11,8 +11,19 @@ function* deleteItem(action){
         console.log(error)
     }
   }; 
+  function* deleteUserItem(action){
+    try{
+        yield axios.delete(`api/golfclub/user/${action.payload}`);
+        yield put({
+            type: 'FETCH_USER_ITEMS'
+        })
+    } catch (error){
+        console.log(error)
+    }
+  }; 
   function* removeItemSaga() {
     yield takeLatest('DELETE_ITEM', deleteItem);
+    yield takeLatest('DELETE_USER_ITEM', deleteUserItem);
   }
   
   export default removeItemSaga;

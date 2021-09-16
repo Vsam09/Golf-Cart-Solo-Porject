@@ -14,8 +14,7 @@ function UserPage() {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
 
-    const userItems = useSelector(store => store.golf)
-
+    const userItems = useSelector(store => store.userItems)
     useEffect(() => {
       dispatch({
         type: "FETCH_USER_ITEMS"
@@ -31,13 +30,28 @@ function UserPage() {
           type: "ADD_NEW_CLUB",
           payload: { brand: brand, description: description, image_path: url, price: price, clubtype: clubtype }
       });
-      
   };
+
+    const handleUsersDelete = (id) => {
+
+        confirm("Are you sure you want to Delete?")
+
+      dispatch({
+        type: 'DELETE_USER_ITEM',
+        payload: id
+      })
+    }
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       {userItems.map(userItem => (
-            <li> {userItem.userid}</li>
+            <li key={userItem.id}> {userItem.brand} 
+            <img src={userItem.image_path} />
+            {userItem.price}
+            <Button>Edit</Button>
+            <Button onClick={() => handleUsersDelete(userItem.id)}>Delete</Button>
+            </li>
       ))}
 
       <section>

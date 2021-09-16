@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* addNewClub(action) {
     try{
         yield axios.post('/api/golfclub/newGolfClub', action.payload)
-        yield put ({ type: 'FETCH_CLUBS' });
+        yield put ({ type: 'FETCH_USER_ITEMS' });
     }
     catch(error) {
         console.log('addNewClub saga has an error', error)
