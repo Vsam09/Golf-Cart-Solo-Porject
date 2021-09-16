@@ -1,10 +1,10 @@
 const total = (state = 0, action) => {
     switch(action.type) {
-        case ('SET_SHOPPING_CART'):
+        case ('ADD_PRICE'):
             return state + Number(action.payload.price);
-        case ('REMOVE_ITEM'):
+        case ('REMOVE_PRICE'):
             return state - Number(action.payload.price);
-        case ('CLEAR'):
+        case ('CLEAR_CART'):
             return 0
         default:
     }

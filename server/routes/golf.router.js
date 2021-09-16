@@ -16,6 +16,24 @@ router.get('/', (req, res) => {
       })
   
   });
+  //GET USER ITEMS
+  router.get('/useritems', (req, res) => {
+
+    const query = `SELECT *
+    FROM "user"
+    JOIN "golf club"
+      ON "user"."id" = "golf club"."userid"
+    WHERE "user"."id" = $1;`;
+    pool.query(query)
+      .then( result => {
+        res.send(result.rows);
+      })
+      .catch(err => {
+        console.log('GET User Item has error', err);
+        res.sendStatus(500)
+      })
+  
+  });
   //GET shopping cart re-render inside shopping cart
   router.get('/shoppingcart', (req, res) => {
 
@@ -113,11 +131,11 @@ router.post('/', (req, res) => {
 router.post('/newGolfClub', (req, res) => {
   console.log('Am i being posted', req.body);
   const query = `
-  INSERT INTO "golf club" ("clubtype", "brand", "image_path", "description", "price")
-  VALUES ($1, $2, $3, $4, $5)
+  INSERT INTO "golf club" ("clubtype", "userid", "brand", "image_path", "description", "price")
+  VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING "id";`
 
-  pool.query(query, [req.body.clubtype, req.body.brand, req.body.image_path, req.body.description, req.body.price])
+  pool.query(query, [req.body.clubtype, req.user.id, req.body.brand, req.body.image_path, req.body.description, req.body.price])
   .then(result => {
     console.log('New Club Id:', result.rows[0].id); //ID IS HERE!
       res.sendStatus(201);

@@ -42,6 +42,15 @@ function ShoppingCart() {
         history.push('/HomePage')
       }
 
+    const placeOrder = (clubid) => {
+        dispatch({
+            type: 'CLEAR_CART',
+            payload: []
+        })
+        history.push('/placeorder')
+    }
+
+
     return (
         <>
         <p>{user.username}</p>
@@ -74,6 +83,7 @@ function ShoppingCart() {
          <Button 
             variant="contained"
             color="primary" 
+            onClick={placeOrder}
             >Place Order
          </Button>
         </div>

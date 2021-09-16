@@ -35,8 +35,8 @@ function GolfHomePage() {
                             <Typography variant="h4" component="h3">Recent Listing</Typography>
                         </CardContent>
                         {golfClubs.map(clubs => (                     
-                            <Grid item> 
-                                <GolfClubItems key={clubs.id} clubs = {clubs}/> 
+                            <Grid key={clubs.id} item> 
+                                <GolfClubItems  clubs = {clubs}/> 
                             </Grid>                       
                         ))}
                     <Grid>

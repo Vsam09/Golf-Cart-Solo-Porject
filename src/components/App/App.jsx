@@ -24,6 +24,7 @@ import './App.css';
 import HomePage from '../GolfHomePage/GolfHomePage';
 import GolfDetails from '../GolfDetails/GolfDetails';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import PlaceOrder from '../PlaceOrder/PlaceOrder';
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +66,14 @@ function App() {
             path="/shoppingcart"
           >
             <ShoppingCart />
+          </Route>
+
+          <Route
+            // shows Place Order Page upon place order
+            exact
+            path="/placeorder"
+          >
+            <PlaceOrder />
           </Route>
 
           <Route

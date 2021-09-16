@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import {useHistory} from 'react-router'
 import Card from '@material-ui/core/Card';
-import { Container, Button, Typography, CardContent } from '@material-ui/core';
+import { Container, Grid, Button, Typography, CardContent } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
@@ -37,7 +37,6 @@ function GolfClubItems({clubs}) {
 
     return(
         <div>
-        <Container maxWidth="md">
             <Card className={classes.root}>
                 <CardActionArea>
                     <CardMedia className={classes.media}
@@ -49,12 +48,10 @@ function GolfClubItems({clubs}) {
                         <Typography variant="body2" component="h1">
                             {clubs.brand}
                         </Typography>
-                        <Typography variant="overline" >{clubs.price}</Typography>
-
+                        <Typography variant="overline" >{clubs.price}</Typography>        
                     </CardContent>
                 </CardActionArea>
             </Card>
-            </Container>
         </div>
     )
 }

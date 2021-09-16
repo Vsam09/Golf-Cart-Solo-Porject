@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import {TextField, Button} from '@material-ui/core';
@@ -14,6 +14,13 @@ function UserPage() {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
 
+    const userItems = useSelector(store => store.golf)
+
+    useEffect(() => {
+      dispatch({
+        type: "FETCH_USER_ITEMS"
+      })
+    }, []);
 
     const PostNewClub = () => { 
       if (brand == "" || description == "" || url == "" || price == "" || clubtype == "") { 
@@ -29,7 +36,10 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      
+      {userItems.map(userItem => (
+            <li> {userItem.userid}</li>
+      ))}
+
       <section>
         <form action="submit">
             <div className="addform" style={{width: '450px'}}>
