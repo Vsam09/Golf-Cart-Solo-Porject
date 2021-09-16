@@ -23,7 +23,7 @@ function GolfClubDetails({details}) {
         });
 
         // dispatch({
-        //     type: 'SET_SHOPPING_CART',
+        //     type: 'ADD_PRICE',
         //     payload: details
         // });
 

@@ -7,6 +7,8 @@ import golfDetailsSaga from './golfDetails.saga';
 import addToCartSaga from './addToCart.saga';
 import removeItemSaga from './delete.saga';
 import clubTypeSaga from './clubtype.saga';
+import addNewClubSaga from './addNewClub.saga';
+import userItemsSaga from './userItems.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +27,7 @@ export default function* rootSaga() {
     addToCartSaga(),
     removeItemSaga(),
     clubTypeSaga(),
+    addNewClubSaga(),
+    userItemsSaga(),
   ]);
 }

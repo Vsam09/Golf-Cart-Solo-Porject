@@ -5,7 +5,7 @@ function* deleteItem(action){
     try{
         yield axios.delete(`api/golfclub/details/${action.payload}`);
         yield put({
-            type: 'FETCH_CLUBS'
+            type: 'FETCH_SHOPPING_CART'
         })
     } catch (error){
         console.log(error)

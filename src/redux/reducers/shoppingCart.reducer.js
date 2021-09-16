@@ -4,8 +4,10 @@ const shoppingCart = (state = [], action) => {
             return action.payload;
         case ('DELETE_ITEM'):
             return state.filter((state) => state.id !== action.payload);
+        case ('CLEAR_CART'):
+            return [];
            default:
-               return state;
     }
+    return state;
 };
 export default shoppingCart;

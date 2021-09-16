@@ -16,7 +16,25 @@ router.get('/', (req, res) => {
       })
   
   });
-  //Shopping cart
+  //GET USER ITEMS
+  router.get('/useritems', (req, res) => {
+
+    const query = `SELECT *
+    FROM "user"
+    JOIN "golf club"
+      ON "user"."id" = "golf club"."userid"
+    WHERE "user"."id" = $1;`;
+    pool.query(query)
+      .then( result => {
+        res.send(result.rows);
+      })
+      .catch(err => {
+        console.log('GET User Item has error', err);
+        res.sendStatus(500)
+      })
+  
+  });
+  //GET shopping cart re-render inside shopping cart
   router.get('/shoppingcart', (req, res) => {
 
  const query = `SELECT 
@@ -95,20 +113,40 @@ router.get('/', (req, res) => {
       });
   });
 
-  //POST CLUB
-  router.post('/', (req, res) => {
-    console.log('post', req.body);
-    let query = `INSERT INTO "shopping cart" ("item_id", "user_id")
-                 VALUES ($1, $2)`;
-    pool.query(query, [req.body.clubid, req.user.id]).then( result => {
-      res.sendStatus(200);
+//POST CLUB to shopping cart
+router.post('/', (req, res) => {
+  console.log('post', req.body);
+  let query = `INSERT INTO "shopping cart" ("item_id", "user_id")
+               VALUES ($1, $2)`;
+  pool.query(query, [req.body.clubid, req.user.id])
+  .then( result => {
+    res.sendStatus(200);
+  }).catch(err => {
+    console.log('POST has Error',err);
+    res.sendStatus(500);
+  })
+});
+
+//POST NEW CLUB to homepage
+router.post('/newGolfClub', (req, res) => {
+  console.log('Am i being posted', req.body);
+  const query = `
+  INSERT INTO "golf club" ("clubtype", "userid", "brand", "image_path", "description", "price")
+  VALUES ($1, $2, $3, $4, $5, $6)
+  RETURNING "id";`
+
+  pool.query(query, [req.body.clubtype, req.user.id, req.body.brand, req.body.image_path, req.body.description, req.body.price])
+  .then(result => {
+    console.log('New Club Id:', result.rows[0].id); //ID IS HERE!
+      res.sendStatus(201);
     }).catch(err => {
-      console.log('POST has Error',err);
-      res.sendStatus(500);
+      console.log('POST addNewClub Error',err);
+      res.sendStatus(500)
     })
   });
 
-  //DELETE
+  
+  //DELETE from shopping cart
   router.delete('/details/:id', (req, res) => {
     console.log('delete me', req.params.id);
     let id = req.params.id;
