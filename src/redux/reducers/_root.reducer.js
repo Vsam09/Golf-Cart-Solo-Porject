@@ -5,6 +5,8 @@ import golf from './golf.reducer';
 import golfDetails from './golfDetails.reducer';
 import total from './total.reducer';
 import shoppingCart from './shoppingCart.reducer';
+import userItems from './userItem.reducer';
+
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -18,6 +20,7 @@ const rootReducer = combineReducers({
   golfDetails,
   total,
   shoppingCart,
+  userItems,
 });
 
 export default rootReducer;

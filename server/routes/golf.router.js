@@ -24,9 +24,11 @@ router.get('/', (req, res) => {
     JOIN "golf club"
       ON "user"."id" = "golf club"."userid"
     WHERE "user"."id" = $1;`;
-    pool.query(query)
+    pool.query(query, [req.user.id])
       .then( result => {
+        console.log('my two items', result.rows)
         res.send(result.rows);
+
       })
       .catch(err => {
         console.log('GET User Item has error', err);
@@ -166,6 +168,25 @@ router.post('/newGolfClub', (req, res) => {
       })
   });
 
+  //DELETE from users account
+  router.delete('/user/:id', (req, res) => {
+    console.log('delete me', req.params.id);
+    let id = req.params.id;
+    let query = `
+      DELETE FROM "golf club"
+      WHERE "golf club"."id" = $1
+    `;
+  
+    pool.query(query, [id])
+      .then(result => {
+        console.log('Delete results', result)
+        res.sendStatus(200);
+      })
+      .catch(error => {
+        console.log('DELETE route error', error)
+        res.sendStatus(500);
+      })
+  });
   
 
   module.exports = router;
