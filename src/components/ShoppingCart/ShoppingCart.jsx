@@ -45,8 +45,7 @@ function ShoppingCart() {
     const placeOrder = () => {
         dispatch({
             type: 'CLEAR_CART',
-            payload: []
-        })
+        });
         history.push('/placeorder')
     }
 
