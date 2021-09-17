@@ -1,12 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
-import {TextField, Button} from '@material-ui/core';
+import {TextField, Button, Typography} from '@material-ui/core';
+import { useParams, useHistory} from 'react-router-dom';
+import {Grid, Card, CardContent, makeStyles, CardActions} from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  card: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const params = useParams();
+  const history = useHistory();
+  const classes = useStyles();
+
 
   const [clubtype, setClubtype] = useState('');
   const [brand, setBrand] = useState('');
@@ -18,7 +35,8 @@ function UserPage() {
 
   useEffect(() => {
     dispatch({
-      type: "FETCH_USER_ITEMS"
+      type: "FETCH_USER_ITEMS",
+      payload: params.id
      })
    }, []);
 
@@ -44,24 +62,16 @@ function UserPage() {
    }
 
   return (
-    <div className="container">
+    <div>
       <h2>Welcome, {user.username}!</h2>
-      {userItems.map(userItem => (
-            <li key={userItem.id}> 
-              <img src={userItem.image_path} />
-              {userItem.brand} 
-                {userItem.price}
-            <Button>Edit</Button>
-            <Button onClick={() => handleUsersDelete(userItem.id)}>Delete</Button>
-            </li>
-      ))}
-
+      <Grid container spacing={3} direction="row" justifyContent="flex-start" alignItems="stretch" >
+      <Grid item xs={6} >
       <section>
         <form action="submit">
             <div className="addform" style={{width: '450px'}}>
                         <TextField 
                         label="Club Type" 
-                        variant="outlined" 
+                        variant="filled" 
                         style={{width: "75%"}} 
                         value={clubtype} 
                         onChange={(event) => setClubtype(event.target.value)}
@@ -69,7 +79,7 @@ function UserPage() {
                         
                         <TextField 
                         label="Brand" 
-                        variant="outlined" 
+                        variant="filled" 
                         style={{width: "75%"}} 
                         value={brand} 
                         onChange={(event) => setBrand(event.target.value)}
@@ -79,7 +89,7 @@ function UserPage() {
                         label="Club Description" 
                         style={{width: "75%"}} 
                         multiline maxRows={6} 
-                        variant="outlined" 
+                        variant="filled" 
                         value={description} 
                         onChange={(event) => setDescription(event.target.value)}
                         /><br /><br />
@@ -87,7 +97,7 @@ function UserPage() {
                         <TextField 
                         label="Insert Image URL" 
                         style={{width: "75%"}} 
-                        variant="outlined" 
+                        variant="filled" 
                         value={url} 
                         onChange={(event) => setUrl(event.target.value)}
                         /><br /><br />
@@ -95,17 +105,10 @@ function UserPage() {
                         <TextField 
                         label="Price" 
                         style={{width: "75%"}} 
-                        variant="outlined" 
+                        variant="filled" 
                         value={price}
                         onChange={(event) => setPrice(event.target.value)} 
                         /><br /><br />
-
-                        {/* <Button 
-                        variant="contained" 
-                        color="primary" 
-                        >Edit</Button> */}
-
-                        &nbsp;
 
                         <Button 
                         variant="contained" 
@@ -117,6 +120,28 @@ function UserPage() {
               </div>
           </form>
       </section>
+      </Grid>
+      <Grid  item xs={6} sm={3}>
+        <Grid container>
+      {userItems.map(userItem => (   
+              <Grid item xs>
+                <Card key={userItem.id}>
+                <CardContent className={classes.card}><img style={{height: "75%"}} src={userItem.image_path} />
+              <Typography>{userItem.brand} </Typography>
+              <Typography>${userItem.price}</Typography>
+           
+          </CardContent>
+          <CardActions>
+          <Button onClick={() => history.push('/edit')}>Edit</Button>
+          <Button onClick={() => handleUsersDelete(userItem.id)}>Delete</Button>
+          </CardActions>
+          </Card>
+         </Grid>
+      ))}
+      </Grid>
+      </Grid>
+      </Grid>
+     
     </div>
   );
 }

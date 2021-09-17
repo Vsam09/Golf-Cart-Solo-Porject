@@ -25,6 +25,9 @@ import HomePage from '../GolfHomePage/GolfHomePage';
 import GolfDetails from '../GolfDetails/GolfDetails';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import PlaceOrder from '../PlaceOrder/PlaceOrder';
+import EditUserItem from '../EditUserItem/EditUserItem';
+import theme from '../../theme/theme';
+import {ThemeProvider} from '@material-ui/core';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +39,7 @@ function App() {
   }, [dispatch]);
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <div>
         <Nav />
@@ -83,6 +87,15 @@ function App() {
           >
             <HomePage />
           </Route>
+
+          <Route
+            // shows Edit page
+            exact
+            path="/edit"
+          >
+            <EditUserItem />
+          </Route>
+
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -153,6 +166,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

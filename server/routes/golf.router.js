@@ -117,7 +117,7 @@ router.get('/', (req, res) => {
 
 //POST CLUB to shopping cart
 router.post('/', (req, res) => {
-  console.log('post', req.body);
+  console.log('post this is posting', req.body);
   let query = `INSERT INTO "shopping cart" ("item_id", "user_id")
                VALUES ($1, $2)`;
   pool.query(query, [req.body.clubid, req.user.id])
@@ -186,6 +186,23 @@ router.post('/newGolfClub', (req, res) => {
         console.log('DELETE route error', error)
         res.sendStatus(500);
       })
+  });
+
+  router.put('/user/:id', async (req, res) => {
+    pool.query(`UPDATE "golf club"
+      SET 
+      "clubtype"= $1,
+      "brand"= $2,
+      "image_path"= $3,
+      "description"= $4,
+      "price"= $5,
+      WHERE "golf club"."userid"= $6;`,
+      [req.body.clubtype, req.body.brand, req.body.image_path, req.body.description, req.body.price, req.params.id])
+      .then(result => res.send(result.rows[0]))
+      .catch(error => {
+        console.log('error in SELECT query', error);
+        res.sendStatus(500);
+      });
   });
   
 
