@@ -9,6 +9,7 @@ import removeItemSaga from './delete.saga';
 import clubTypeSaga from './clubtype.saga';
 import addNewClubSaga from './addNewClub.saga';
 import userItemsSaga from './userItems.saga';
+import userEditSaga from './userEdit.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -29,5 +30,6 @@ export default function* rootSaga() {
     clubTypeSaga(),
     addNewClubSaga(),
     userItemsSaga(),
+    userEditSaga(),
   ]);
 }
