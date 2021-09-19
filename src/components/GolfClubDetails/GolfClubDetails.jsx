@@ -5,7 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     root: {
-      maxWidth: 200,
+      maxWidth: 100,
     },
   });
 
@@ -34,7 +34,7 @@ function GolfClubDetails({details}) {
         <div>
             <Card>
         <h2>{details.brand}</h2>
-        <CardMedia className={classes.root} height="250" component="img" image={details.image} />
+        <CardMedia className={classes.root}  component="img" image={details.image} />
         <Typography variant="h6">Price: ${details.price} <Button color="primary" onClick={addToCart}>Add To Cart</Button></Typography>
         <Typography>{details.description}</Typography>
         </Card>

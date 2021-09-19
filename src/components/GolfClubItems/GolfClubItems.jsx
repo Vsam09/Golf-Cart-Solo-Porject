@@ -6,18 +6,20 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      maxWidth: 200,
-      '& > *': {
-        margin: theme.spacing(0),
-        width: '20ch',
-      },
-      media: {
-          height: 180,
-      },
-    },
-  }));
+    const useStyles = makeStyles((theme) => ({
+        root: {
+        maxWidth: 200,
+        '& > *': {
+            margin: theme.spacing(0),
+            width: '20ch',
+        },
+        },
+        card: {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+            color: theme.palette.text.secondary,
+          },
+    }));
 
 function GolfClubItems({clubs}) {
     const classes = useStyles();
@@ -37,14 +39,16 @@ function GolfClubItems({clubs}) {
 
     return(
         <div>
-            <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia className={classes.media}
+            <Grid container >
+                <Grid item >
+            <Card className={classes.root} onClick={imageOnClick} >
+                <CardActionArea >
+                    <CardContent >
+                        <img src={clubs.image_path}/>
+                    {/* <CardMedia className={classes.media}
                     component="img" 
-                    onClick={imageOnClick} 
                     image={clubs.image_path} 
-                    alt={clubs.clubtype}/> 
-                    <CardContent>
+                    alt={clubs.clubtype}/>            */}
                         <Typography variant="body2" component="h1">
                             {clubs.brand}
                         </Typography>
@@ -52,6 +56,8 @@ function GolfClubItems({clubs}) {
                     </CardContent>
                 </CardActionArea>
             </Card>
+            </Grid>
+            </Grid>
         </div>
     )
 }

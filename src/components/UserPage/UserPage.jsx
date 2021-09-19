@@ -52,9 +52,8 @@ function UserPage() {
   };
 
   const handleUsersDelete = (id) => {
-
-      confirm("Are you sure you want to Delete?")
-
+      confirm("Are you sure you want to delete item?")
+      
     dispatch({
        type: 'DELETE_USER_ITEM',
       payload: id
@@ -63,7 +62,7 @@ function UserPage() {
 
   return (
     <div>
-      <h2>Welcome, {user.username}!</h2>
+      <h2>Welcome, {user.username}! &nbsp; <LogOutButton  /></h2>
       <Grid container spacing={3} direction="row" justifyContent="flex-start" alignItems="stretch" >
       <Grid item xs={6} >
       <section>
@@ -124,16 +123,16 @@ function UserPage() {
       <Grid  item xs={6} sm={3}>
         <Grid container>
       {userItems.map(userItem => (   
-              <Grid item xs>
+              <Grid item xs> &nbsp;
                 <Card key={userItem.id}>
                 <CardContent className={classes.card}><img style={{height: "75%"}} src={userItem.image_path} />
               <Typography>{userItem.brand} </Typography>
               <Typography>${userItem.price}</Typography>
            
           </CardContent>
-          <CardActions>
+          <CardActions> &nbsp; &nbsp; &nbsp; 
           <Button onClick={() => history.push('/edit')}>Edit</Button>
-          <Button onClick={() => handleUsersDelete(userItem.id)}>Delete</Button>
+          <Button color="secondary" onClick={() => handleUsersDelete(userItem.id)}>Delete</Button>
           </CardActions>
           </Card>
          </Grid>

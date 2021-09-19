@@ -24,24 +24,23 @@ function GolfHomePage() {
     return(
         <>
             <h2>
-            <CardMedia 
+            <CardMedia
+                className="homeImage"
                 height="350"
                 component="img" 
                 image='images/Background-Golf.jpeg'/>
             </h2>
-        <Card p={4}>
-                <Grid container spacing={3}>
-                        <CardContent>
-                            <Typography variant="h4" component="h3">Recent Listing</Typography>
-                        </CardContent>
-                        {golfClubs.map(clubs => (                     
-                            <Grid key={clubs.id} item> 
-                                <GolfClubItems  clubs = {clubs}/> 
-                            </Grid>                       
-                        ))}
-                    <Grid>
+        <Card>
+            <CardContent>
+                <Typography className="recentlistings" variant="h5" component="h3">Recent Listings</Typography>
+            </CardContent>
+                <Grid container spacing={3}>               
+                    {golfClubs.map(clubs => (                     
+                     <Grid key={clubs.id} item> 
+                        <GolfClubItems clubs = {clubs}/> 
+                    </Grid>                       
+                    ))}
                 </Grid>
-            </Grid>
         </Card>
         </>
 

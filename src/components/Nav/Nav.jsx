@@ -39,7 +39,7 @@ function Nav() {
       <Link to="/HomePage">
         <h2 className="nav-title">Golf Cart</h2>        
       </Link>
-      <Driver />     
+          
           <Button 
             variant="contained" 
             color="primary" 
@@ -61,14 +61,18 @@ function Nav() {
         {user.id && (
           <>
             <Link className="navLink" to="/HomePage">
-              Home
+              <Button 
+              variant="contained" 
+              color="primary">Home</Button>
             </Link>
 
             <Link className="navLink" to="/info">
-              Info Page
+              <Button variant="contained" 
+            color="primary" >Info</Button>
             </Link>
-
-            <LogOutButton className="navLink" />
+            <Driver /> 
+            {/* <Button variant="contained" 
+            color="primary" ><LogOutButton  /></Button> */}
 
             <Link className="navLink" to="/shoppingcart">
               <ShoppingCartIcon />

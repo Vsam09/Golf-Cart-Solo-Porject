@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom"
 import { Button, Grid, CardContent, Card, Tooltip, Paper } from "@material-ui/core";
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import { useEffect } from 'react';
+import '../App/App.css';
 
 
 function ShoppingCart() {
@@ -51,7 +52,7 @@ function ShoppingCart() {
 
 
     return (
-        <>
+        <div className="shoppingcart">
         <p>{user.username}</p>
         <Grid container xs={12} justifyContent="flex-end" >
          <Paper >
@@ -59,7 +60,7 @@ function ShoppingCart() {
             <thead>
                 <tr><Grid>
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item</th>
-                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price</th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price</th>
                     </Grid>
                 </tr>
             </thead>
@@ -75,7 +76,7 @@ function ShoppingCart() {
                         <td>&nbsp;&nbsp;{golf.price} <Button onClick={() => handleDelete(golf.cartid)}> Remove <DeleteForeverOutlinedIcon /> </Button></td>
                        
                     </tr>))}
-                    <p>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                    <p>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                     Total: ${newTotal}</p>
             </tbody>
         </table>
@@ -106,7 +107,7 @@ function ShoppingCart() {
         
         </Grid>
 
-        </>
+        </div>
     );
 };
 
