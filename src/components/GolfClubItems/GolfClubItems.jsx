@@ -45,10 +45,6 @@ function GolfClubItems({clubs}) {
                 <CardActionArea >
                     <CardContent >
                         <img src={clubs.image_path}/>
-                    {/* <CardMedia className={classes.media}
-                    component="img" 
-                    image={clubs.image_path} 
-                    alt={clubs.clubtype}/>            */}
                         <Typography variant="body2" component="h1">
                             {clubs.brand}
                         </Typography>

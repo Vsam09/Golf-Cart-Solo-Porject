@@ -89,7 +89,7 @@ function ShoppingCart() {
         <Button 
             direction="row-reverse"
             variant="contained"
-            color="primary" 
+            color="secondary" 
             onClick={continueShopping}
             >Continue Shopping
         </Button>

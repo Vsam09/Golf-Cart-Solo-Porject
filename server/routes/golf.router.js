@@ -5,7 +5,7 @@ const pool = require('../modules/pool')
 //GET CLUBS
 router.get('/', (req, res) => {
 
-    const query = `SELECT * FROM "golf club" ORDER BY "clubtype" ASC`;
+    const query = `SELECT * FROM "golf club" ORDER BY "clubtype"`;
     pool.query(query)
       .then( result => {
         res.send(result.rows);
