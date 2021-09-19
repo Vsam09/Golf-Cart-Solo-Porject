@@ -1,6 +1,6 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from "react-router-dom"
-import { Button } from "@material-ui/core";
+import { Button, Grid, CardContent, Card, Tooltip, Paper } from "@material-ui/core";
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import { useEffect } from 'react';
 
@@ -53,31 +53,48 @@ function ShoppingCart() {
     return (
         <>
         <p>{user.username}</p>
-
+        <Grid container xs={12} justifyContent="flex-end" >
+         <Paper >
         <table>
             <thead>
-                <tr>
-                    <th>Brand</th>
-                    <th>Price</th>
+                <tr><Grid>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item</th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price</th>
+                    </Grid>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style={{float: "right"}}>
                 {shoppingCart.map((golf, i) => (
                     <tr key={i}>
-                        <td> <img width="50px" src={golf.image} /> {golf.brand}</td>
-                        <td> {golf.price} <Button onClick={() => handleDelete(golf.cartid)}> Remove <DeleteForeverOutlinedIcon /> </Button></td>
+                        <Grid item xs={12}>
+                        <td><Card><img width="50px" src={golf.image} /> </Card> </td>
+                        </Grid>
+                       
+                        <td>&nbsp;&nbsp;{golf.brand}</td>
+                       
+                        <td>&nbsp;&nbsp;{golf.price} <Button onClick={() => handleDelete(golf.cartid)}> Remove <DeleteForeverOutlinedIcon /> </Button></td>
+                       
                     </tr>))}
+                    <p>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                    Total: ${newTotal}</p>
             </tbody>
         </table>
+        </Paper>   
+        </Grid>
         {/* display total */}
-        <p>Total: ${newTotal}</p>
+        
         {/* checkout button */}
+        <Grid container direction="row-reverse">
         <Button 
+            direction="row-reverse"
             variant="contained"
             color="primary" 
             onClick={continueShopping}
             >Continue Shopping
         </Button>
+        </Grid>
+        <Grid container direction="row-reverse">
+
         <div>
          <Button 
             variant="contained"
@@ -86,6 +103,9 @@ function ShoppingCart() {
             >Place Order
          </Button>
         </div>
+        
+        </Grid>
+
         </>
     );
 };
