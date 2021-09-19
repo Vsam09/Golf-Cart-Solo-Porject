@@ -17,6 +17,28 @@ function InfoPage() {
         <li>Material UI</li>
         <li>Postgres</li>
       </ul>
+      <h2>Challenges</h2>
+      <ul>
+        <li>
+          The toughest 
+          <br/>challenge I 
+          <br/>overcame was 
+          <br/>synchronizing all the 
+          <br/>users items list so they 
+          <br/>can have the ability to edit 
+          <br/>and delete .
+        </li>
+      </ul>
+      <h2>What's Next</h2>
+      <ul>
+        <li>
+          Now that users can buy and sell their 
+          <br/>equipments, the next challenge I’d love to tackle is 
+          <br/>ability to add golfing accessories. Not only can user buy 
+          <br/>and sell golf clubs, they can also purchase all necessary 
+          <br/>items to start golfing. 
+        </li>
+      </ul>
     </div>
   );
 }

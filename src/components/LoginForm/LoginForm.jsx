@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import {TextField, Card, Button, Grid} from '@material-ui/core';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -25,8 +26,10 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+    <Grid component="form"  spacing={2} className="formPanel" onSubmit={login}>
+      <Card>
+        <h2 className="loginh2" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -34,8 +37,10 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
-          <input
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <TextField
+            label="User Name"
+            variant="filled"
             type="text"
             name="username"
             required
@@ -44,10 +49,13 @@ function LoginForm() {
           />
         </label>
       </div>
+      &nbsp;
       <div>
         <label htmlFor="password">
-          Password:
-          <input
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <TextField
+            label="Password"
+            variant="filled"
             type="password"
             name="password"
             required
@@ -56,10 +64,19 @@ function LoginForm() {
           />
         </label>
       </div>
+      &nbsp;
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Button className="btn" 
+          type="submit" 
+          name="submit" 
+          value="Log In" 
+          color="primary"                         
+          variant="outlined" 
+        >Log In</Button>
       </div>
-    </form>
+      </Card>
+    </Grid>
   );
 }
 
